@@ -1,0 +1,37 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/add_item.css' %}">
+
+<main>
+    <div class="content">
+        <a href="{% url 'home' %}">
+            <img src="{% static 'images/back-arrow.svg' %}" alt="" class="back-arrow-icon">
+        </a>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{form}}
+            <div class="groups-div">
+                <label for="recommended_groups">Recommended groups</label>
+                <select name="recommended_groups" id="recommended_groups">
+                    <option value="" selected>---------</option>
+                    {% for group in groups %}
+                    <option value="{{group.group_name}}">{{group.group_name}}</option>
+                    {% endfor %}
+                </select>
+                <div class="add-group-div">
+                    <a href="{% url 'addGroup' %}" class="add-group-link">Add Group</a>
+                </div>
+            </div>
+            <div>
+                <label for="expiring_date">Expiring Date</label>
+                <input type="date" id="expiring_date" name="expiring_date">
+            </div>
+            <input type="submit" value="Submit" class="submit-btn">
+        </form>
+    </div>
+</main>
+
+{% endblock %}

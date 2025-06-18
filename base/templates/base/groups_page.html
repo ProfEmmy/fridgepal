@@ -1,0 +1,37 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/groups_page.css' %}">
+
+<main>
+    <div class="content">
+        <a href="{% url 'addGroup' %}">
+            <img src="{% static 'images/back-arrow.svg' %}" alt="back-arrow-icon" class="back-arrow-icon">
+        </a>
+        {% for group in groups %}
+        <div class="group">
+            <div class="group-div">
+                <div class="left-side">
+                    <h3 class="group-name">{{group.group_name}}</h3>
+                </div>
+                {% if group.user.username == request.user.username %}
+                <div class="right-side">
+                    <div class="action-btns">
+                        <a href="{% url 'deleteGroup' group.id %}" class="remove-group">
+                            <button>Remove</button>
+                        </a>
+                        <a href="{% url 'editGroup' group.id %}" class="edit-group">
+                            <button>Edit</button>
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+
+{% endblock content %}

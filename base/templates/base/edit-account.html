@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/edit-account.css' %}">
+
+<main>
+    <div class="content">
+        <a href="{% url 'home' %}">
+            <img src="{% static 'images/back-arrow.svg' %}" alt="back-arrow-icon" class="back-arrow-icon">
+        </a>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+            <div>
+                <label for="{{field.id}}">{{field.name}}:</label>
+                {{field}}
+            </div>
+            {% endfor %}
+            <div>
+                <input type="submit" value="Submit" class="submit-btn">
+            </div>
+        </form>
+    </div>
+</main>
+
+{% endblock content %}

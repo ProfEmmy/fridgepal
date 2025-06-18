@@ -1,0 +1,145 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'styles/homePage.css' %}">
+
+<main>
+    <div class="header">
+        <h4 class="salutation"><span class="salutation-txt">Hello {{request.user.username}}</span> <span>👋</span></h3>
+        <img src="{% static 'images/profile-icon.svg' %}" alt="" class="profile-icon">
+    </div>
+    <div class="fridge-container">
+        <div class="fridge-heading-div">
+            <h1 class="fridge-heading">Digital Fridge</h1>
+        </div>
+        <div class="fridge-content">
+            {% for item in items %}
+            <div class="fridge-item-div">
+                <div class="action-btns {% if item.even == False %}action-btns2{% endif %}">
+                    <div class="action-btns-div">
+                        <a href="{% url 'editItem' item.id %}">
+                            <img src="{% static 'images/pencil-solid.svg' %}" alt="">
+                        </a>
+                        <a href="{% url 'deleteItem' item.id %}">
+                            <img src="{% static 'images/trash-solid.svg' %}" alt="">
+                        </a>
+                        <a href="{% url 'itemPage' item.id %}">
+                            <img src="{% static 'images/circle-info-solid.svg' %}" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="fridge-item {% if item.even == False %}fridge-item2{% endif %}">
+                    <div class="item-details">
+                        <h2 class="item-name">{{item.name}}</h2>
+                        <hr class="line">
+                        <div class="date-kept-div">
+                            <p class="date-kept-label">date kept:</p>
+                            <p class="date-kept">{{item.created}}</p>
+                        </div>
+                    </div>
+                    <div class="item-classifications">
+                        <div class="group">group: 
+                            {% if item.recommended_groups %}
+                            {{item.recommended_groups}}
+                            {% else %}
+                            
+                            {% endif %}</div>
+                        <hr>
+                        <div class="class">class: {{item.classification}}</div>
+                        <hr>
+                        <div class="expires">expires: {{item.expiring_date}}</div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="add-item-div">
+        <div class="add-item-innerdiv">
+            <a href="{% url 'addItemPage' %}">
+                <img src="{% static 'images/add-icon.svg' %}" alt="" class="add-icon action-icon">
+            </a><br>
+            <span class="add-txt display_add_txt">Add Item</span>
+        </div>
+        <div class="filter-parentdiv">
+            <div class="filter-items-div">
+                <img src="{% static 'images/filter-icon.svg' %}" alt="" class="item-icon action-icon">
+                <span class="add-txt display_add_txt">Filter Items</span>
+            </div>
+            <div class="filter-div">
+                <input type="text" placeholder="Search Items" name="q" class="search-items-form">
+                <hr class="filter-dropdown-line">
+                <div class="filter-links">
+                    <span>Filter by group</span>
+                    <span>Filter by class</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="profile-dropdown profile-dropdown-display">
+        <div class="profile-dropdown-div">
+            <a href="{% url 'addItemPage' %}">Add Item</a><br>
+            <a href="{% url 'addGroup' %}">Add Food Group</a>
+            <hr>
+            <a href="{% url 'editAccount' request.user.id %}">Edit Account</a><br>
+            <a href="{% url 'changePassword' request.user.id %}" style="font-size: .86em;">Change Password</a>
+            <hr>
+            <a href="{% url 'logout' %}"style="color: rgb(212, 31, 31);">Logout</a>
+        </div>
+    </div>
+</main>
+
+<script>
+    const fridge_item_div = document.querySelectorAll('.fridge-item-div')
+
+    fridge_item_div.forEach(fridge_item => {
+        const action_btns = fridge_item.querySelector('.action-btns')
+        fridge_item.addEventListener('mouseenter', () => {
+            action_btns.classList.add('active')
+        })
+    })
+
+    fridge_item_div.forEach(fridge_item => {
+        fridge_item.addEventListener('mouseleave', () => {
+            const action_btns = fridge_item.querySelector('.action-btns')
+            action_btns.classList.remove('active')
+        })
+    })
+
+    
+    const profile_icon = document.querySelector('.profile-icon')
+    const profile_dropdown = document.querySelector('.profile-dropdown')
+    const profile_dropdown_div = document.querySelector('.profile-dropdown-div')
+
+    profile_icon.addEventListener('click', () => {
+        profile_dropdown.classList.toggle('profile-dropdown-display')
+    })
+
+    window.addEventListener('mouseup', () => {
+        profile_dropdown.classList.add('profile-dropdown-display')
+    })
+
+
+    const add_icon = document.querySelectorAll(".action-icon")
+    add_icon.forEach(i => {
+        i.addEventListener("mouseenter", e => {
+            const div = e.target.closest('div')
+            const add_txt = div.querySelector('.add-txt')
+            add_txt.classList.remove('display_add_txt')
+        })
+    })
+
+    add_icon.forEach(i => {
+        i.addEventListener("mouseleave", e => {
+            const div = e.target.closest('div')
+            const add_txt = div.querySelector('.add-txt')
+            add_txt.classList.add('display_add_txt')
+        })
+    })
+</script>
+
+{% endblock %}

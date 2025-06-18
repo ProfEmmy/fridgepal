@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/add_group.css' %}">
+
+<main>
+    <div class="content">
+        <a href="{% url 'addItemPage' %}">
+            <img src="{% static 'images/back-arrow.svg' %}" alt="back-arrow-icon" class="back-arrow-icon">
+        </a>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{form}}
+            <input type="submit" value="Submit" class="submit-btn">
+
+            <br><br>
+            <a href="{% url 'groupsPage' %}" class="groups-link">See all groups</a>
+        </form>
+    </div>
+</main>
+
+{% endblock content %}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Fridge</title>
+
+    <style>
+        @keyframes spin {
+            0% {
+                transform: rotate(0);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .page-loader-div {
+            background-color: #000000;
+            position: absolute;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            top: 0;
+            transition: .3s;
+        }
+
+        .page-loader-innerdiv {
+            opacity: 1;
+            width: 100%;
+            height: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #ffffff;
+        }
+        
+        .loader {
+            margin-right: 18px;
+            width: 30px;
+            height: 30px;
+            border-radius: 100%;
+            border-top: 3px solid white;
+            animation: spin .5s linear infinite;
+        }
+
+        .link {
+            transition: .4s;
+        }
+
+        .link:hover {
+            color: red;
+        }
+
+        .page-loader-div.page-loader-div-display {
+            opacity: 0;
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    {% block content %}
+    
+    {% endblock %}
+
+    {% include 'base/message.html' %}
+
+
+    <div class="page-loader-div">
+        <div class="page-loader-innerdiv">
+            <div class="loader"></div>
+            <h3>Loading Fun Django Project by <a class="link" href="https://github.com/profemmy">Emmanuel</a></h3>
+        </div>
+    </div>
+</body>
+
+
+<script>
+    const pageLoaderDiv = document.querySelector('.page-loader-div')
+
+    window.addEventListener('load', () => {
+        pageLoaderDiv.classList.add('page-loader-div-display')
+    })
+</script>
+
+
+</html>

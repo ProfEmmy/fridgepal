@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/item.css' %}">
+
+<main>
+    <div class="content">
+        <div class="header">
+            <a href="{{request.META.HTTP_REFERER}}">
+                <img src="{% static 'images/back-arrow.svg' %}" alt="" class="back-arrow">
+            </a>
+            <h1 class="item-name-heading">{{item.name}}</h1>
+            <span class="created-txt">added on: {{item.created}}</span>
+        </div>
+        <div class="item-details">
+            <p class="amount">Amount: {{item.amount}}</p>
+            <p class="description">Description: {% if item.description %}{{item.description}}{%else%}None{%endif%}</p>
+            <p class="classification">Classification: {{item.classification}}</p>
+            <p class="group">Group: {% if item.recommended_groups %}{{item.recommended_groups}}{%else%}{{item.other_groups}}{%endif%}</p>
+            <p class="expiring_date">Expiring Date: {{item.expiring_date}}</p>
+            <p class="last_updated">Last Edited: {{item.updated}}</p>
+        </div>
+        <div class="buttons-div">
+            <a href="{% url 'deleteItem' item.id %}">
+                <button class="remove-btn">Remove</button>
+            </a>
+            <a href="{% url 'editItem' item.id %}">
+                <button class="edit-btn">Edit</button>
+            </a>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

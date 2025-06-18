@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/delete_item.css' %}">
+
+<main>
+    <div class="content">
+        <div class="back-arrow-div">
+            <a href="{% url 'home' %}">
+                <img src="{% static 'images/back-arrow.svg' %}" alt="" class="back-arrow-icon">
+            </a>
+        </div>
+        <form class="confirm-delete" action="" method="POST">
+            {% csrf_token %}
+            <h3 class="confirm-txt">Are you sure you want to remove {{item.name}}?</h3>
+            <input type="submit" value="Delete" class="delete-btn">
+        </form>
+    </div>
+</main>
+
+{% endblock %}

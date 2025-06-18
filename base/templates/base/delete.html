@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/delete.css' %}">
+
+<main>
+    <div class="content">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <h2>Are you sure you want to delete {{obj}}?</h2>
+            <div class="action-btns">
+                <input type="submit" value="Confirm" class="confirm-btn">
+                <a href="{{request.META.HTTP_REFERER}}" class="go-back-link">
+                    <button type="button">Back</button>
+                </a>
+            </div>
+        </form>
+    </div>
+</main>
+
+{% endblock content %}

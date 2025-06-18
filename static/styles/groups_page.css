@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: rgb(255, 98, 98);
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+}
+
+.back-arrow-icon {
+    width: 30px;
+    transition: .3s;
+    margin-top: 9px;
+    margin-bottom: 10px;
+}
+
+.back-arrow-icon:hover {
+    transform: translateX(-10px);
+}
+
+.group {
+    background-color: #ffffff;
+    width: 490px;
+    height: 100px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px solid #000000;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.group-div {
+    width: 90%;
+    height: 50%;
+}
+
+.group-name {
+    margin: 0;
+}
+
+.group-div {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.right-side {
+    justify-self: right;
+}
+
+.action-btns a {
+    text-decoration: none;
+}
+
+.action-btns button {
+    width: 90px;
+    height: 30px;
+    border: 0;
+    font-weight: bold;
+    border-radius: 10px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.remove-group>button {
+    background-color: red;
+}
+
+.edit-group>button {
+    background-color: yellow;
+}
+
+.remove-group>button:hover {
+    background-color: rgb(172, 0, 0);
+    transform: scale(1.1, 1.1);
+}
+
+.edit-group>button:hover {
+    background-color: rgb(175, 175, 0);
+    transform: scale(1.1, 1.1);
+}
