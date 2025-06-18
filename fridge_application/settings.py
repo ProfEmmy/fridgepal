@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-81@#64@iukxusvi7+@&x$gmi2i7r-#xbxp7y5f3!4j43-lhrnk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['198.211.99.20', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['198.211.99.20', 'localhost', '127.0.0.1', "0.0.0.0:8000", "fridgepal.onrender.com"]
 
 
 # Application definition
