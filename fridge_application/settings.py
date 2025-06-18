@@ -28,6 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['198.211.99.20', 'localhost', '127.0.0.1', "0.0.0.0:8000", "fridgepal.onrender.com"]
 
+CSRF_TRUSTED_ORIGINS = ["fridgepal.onrender.com"]
 
 # Application definition
 
